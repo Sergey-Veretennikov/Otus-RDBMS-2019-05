@@ -21,7 +21,7 @@ LEFT JOIN user_info ui on u.user_info_id = ui.user_info_id
 WHERE service_id = {'service_id'}
 ```
  
- ## Выборка имен операторов, которые оказывали данную услугу: 
+ ## Выборка оказанных услуг оператором: 
 ```sql
 SELECT
 s.service_name
