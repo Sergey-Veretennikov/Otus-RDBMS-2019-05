@@ -8,3 +8,4 @@ services:
         - ${POSTGRES_EXT_PORT}:5433
       volumes:
         - "${POSTGRES_DIR}:/var/lib/postgresql/data"
+        - "./sql:/docker-entrypoint-initdb.d"
