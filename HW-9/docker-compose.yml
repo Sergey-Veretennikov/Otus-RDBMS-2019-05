@@ -5,7 +5,7 @@ services:
       container_name: ${POSTGRES_CONTAINER_NAME}
       env_file: .env
       ports:
-        - ${POSTGRES_EXT_PORT}:5433
+        - ${POSTGRES_EXT_PORT}:5436
       volumes:
         - "${POSTGRES_DIR}:/var/lib/postgresql/data"
-        - "./sql:/docker-entrypoint-initdb.d"
+        
