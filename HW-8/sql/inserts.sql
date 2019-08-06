@@ -26,7 +26,7 @@ VALUES ('Service_1', 1, 30),
 INSERT INTO windows (name, work)
 VALUES ('Windows_1', true),
        ('Windows_2', true),
-       ('Windows_2', false);
+       ('Windows_3', false);
 
 INSERT INTO user_info(name, surname, dateof_birth, contact)
 VALUES ('Sergey', 'Vasilev', '1980-06-23', '89124757545'),
@@ -64,7 +64,19 @@ VALUES ((SELECT users_id
                                           WHERE name = 'Windows_1'), (SELECT service_id
                                                                       FROM service
                                                                       WHERE service_name = 'Service_1'),
-        '2019-06-23 19:14:47.588000', 1);
+        '2019-06-23 9:14:47.588000', 1);
+		
+INSERT INTO queue (users_operator_id, window_id, service_id, date_time, ticket_number)
+VALUES ((SELECT users_id
+         FROM (users JOIN users_role USING (users_id))
+                  JOIN role USING (role_id)
+         WHERE users.is_active = TRUE
+           AND role_name = 'Role_2'), (SELECT window_id
+                                          FROM windows
+                                          WHERE name = 'Windows_2'), (SELECT service_id
+                                                                      FROM service
+                                                                      WHERE service_name = 'Service_2'),
+        '2019-06-23 10:14:47.588000', 2);
 
 UPDATE queue
 SET done= true
