@@ -4,18 +4,18 @@ CREATE VIEW queue_view AS
 SELECT queue_id,
        ui.name,
        ui.surname,
-       w.name AS window_name,
+       w.name                                                       AS window_name,
        s.service_name,
        CASE WHEN done IS FALSE THEN 'Не оказана' ELSE 'Оказана' END AS completed_or_not,
        s.average_lead_time,
        plan_date,
        ticket_number
 FROM queue
-         LEFT JOIN service s ON s.service_id = queue.service_id
-         LEFT JOIN windows w ON w.window_id = queue.window_id
-         LEFT JOIN users u ON u.users_id = users_operator_id
-         LEFT JOIN user_info ui ON u.user_info_id = ui.user_info_id
-GROUP BY queue_id, ui.name, ui.surname,s.average_lead_time,   window_name, s.service_name, completed_or_not, plan_date,
+         INNER JOIN service s ON s.service_id = queue.service_id
+         INNER JOIN windows w ON w.window_id = queue.window_id
+         INNER JOIN users u ON u.users_id = users_operator_id
+         INNER JOIN user_info ui ON u.user_info_id = ui.user_info_id
+GROUP BY queue_id, ui.name, ui.surname, s.average_lead_time, window_name, s.service_name, completed_or_not, plan_date,
          done, ticket_number;
 
 SELECT queue_id, name, completed_or_not
