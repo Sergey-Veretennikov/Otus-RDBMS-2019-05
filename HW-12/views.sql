@@ -20,7 +20,9 @@ GROUP BY queue_id, ui.name, ui.surname, s.average_lead_time, window_name, s.serv
 
 SELECT queue_id, name, completed_or_not
 FROM queue_view
-WHERE queue_id BETWEEN (1 /*page*/- 1) * 5/*pagesize*/+ 1 AND 1 /*page*/ * 5/*pagesize*/;
+ORDER BY queue_id
+LIMIT 5
+OFFSET 6;
 
 -- Перестроить демонстрацию иерархии категорий с помощью рекурсивного CTE
 
