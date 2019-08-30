@@ -4,7 +4,7 @@ CREATE VIEW queue_view AS
 SELECT queue_id,
        ui.name,
        ui.surname,
-       w.name                                                       AS window_name,
+       w.name AS window_name,
        s.service_name,
        CASE WHEN done IS FALSE THEN 'Не оказана' ELSE 'Оказана' END AS completed_or_not,
        s.average_lead_time,
@@ -20,8 +20,7 @@ GROUP BY queue_id, ui.name, ui.surname, s.average_lead_time, window_name, s.serv
 
 SELECT queue_id, name, completed_or_not
 FROM queue_view
-GROUP BY queue_id, completed_or_not, name
-LIMIT 10;
+WHERE queue_id BETWEEN (1 /*page*/- 1) * 5/*pagesize*/+ 1 AND 1 /*page*/ * 5/*pagesize*/;
 
 -- Перестроить демонстрацию иерархии категорий с помощью рекурсивного CTE
 
