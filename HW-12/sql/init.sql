@@ -42,7 +42,7 @@ CREATE TABLE public.service (
 	average_lead_time    smallint  NOT NULL ,
 	CONSTRAINT service_pkey PRIMARY KEY ( service_id )
  );
- create index service__index
+ create index service_service_name_index
     on service (to_tsvector('russian'::regconfig, service_name::text));
  
 CREATE TABLE public.user_info (
