@@ -39,7 +39,7 @@ CREATE TABLE public.service (
 	service_id           serial  NOT NULL ,
 	service_name         varchar(96)  NOT NULL ,
 	permission_id        integer  NOT NULL ,
-	average_lead_time    smallint  NOT NULL ,
+	average_lead_time_min    smallint  NOT NULL ,
 	CONSTRAINT service_pkey PRIMARY KEY ( service_id )
  );
  create index service_service_name_index
@@ -164,7 +164,7 @@ COMMENT ON COLUMN public.service.service_name IS 'Поле содержит те
 
 COMMENT ON COLUMN public.service.permission_id IS 'Поле содержит значение внешнего ключа на таблицу permission, тип данных – целые числа, поле не может быть null.';
 
-COMMENT ON COLUMN public.service.average_lead_time IS 'Поле содержит числовое значение времени, отведенного на оказание данной услуги, тип данных – целые числа малого диапазона, поле не может быть null.';
+COMMENT ON COLUMN public.service.average_lead_time_min IS 'Поле содержит числовое значение времени, отведенного на оказание данной услуги в минутах, тип данных – целые числа малого диапазона, поле не может быть null.';
 
 ALTER TABLE public.service ADD CONSTRAINT fk_service_permission FOREIGN KEY ( permission_id ) REFERENCES public.permission( permission_id ) ON DELETE CASCADE ON UPDATE RESTRICT;
 
